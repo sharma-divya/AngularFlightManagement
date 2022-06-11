@@ -1,0 +1,20 @@
+<form #airlineform="ngForm" (ngSubmit)="SaveAirline(airlineform.value)" >
+<h1>Add Airline</h1>
+<span>Airline Name </span><input type="text" ngModel name ="AirlineName" placeholder="Enter Airline Name">
+<br><br>
+<span>Contact Number </span><input type="text" ngModel name ="ContactNumber" placeholder="Enter Contact">
+<br><br>
+<span>Contact Address </span> <input type="text" ngModel name ="ContactAddress" placeholder="Enter Address">
+<br><br>
+<span>Discount Code </span><input type="text" ngModel name ="DiscountCode" placeholder="Enter Code">
+<br><br>
+<span>Discount Amount </span><input type="number" ngModel name ="DiscountAmount" placeholder="Enter Amount">
+<br><br>
+
+<button>Submit</button>
+</form>
+<table><th>Airline Name</th><th>Contact Address</th><th>Airline Name</th></table>
+<table *ngFor="let a of airlines" >
+    <tr>{{ a.airlineName }}</tr>
+</table>
+
