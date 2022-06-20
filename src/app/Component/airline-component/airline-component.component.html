@@ -1,20 +1,80 @@
-<form #airlineform="ngForm" (ngSubmit)="SaveAirline(airlineform.value)" >
-<h1>Add Airline</h1>
-<span>Airline Name </span><input type="text" ngModel name ="AirlineName" placeholder="Enter Airline Name">
-<br><br>
-<span>Contact Number </span><input type="text" ngModel name ="ContactNumber" placeholder="Enter Contact">
-<br><br>
-<span>Contact Address </span> <input type="text" ngModel name ="ContactAddress" placeholder="Enter Address">
-<br><br>
-<span>Discount Code </span><input type="text" ngModel name ="DiscountCode" placeholder="Enter Code">
-<br><br>
-<span>Discount Amount </span><input type="number" ngModel name ="DiscountAmount" placeholder="Enter Amount">
-<br><br>
-
-<button>Submit</button>
-</form>
-<table><th>Airline Name</th><th>Contact Address</th><th>Airline Name</th></table>
-<table *ngFor="let a of airlines" >
-    <tr>{{ a.airlineName }}</tr>
+<app-admindashboard></app-admindashboard>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <h3 style="color:black;">Manage Airlines</h3>
+        <div class="d-flex">
+           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <span class="glyphicon glyphicon-plus"></span> &nbsp;Add Airline</button>
+        </div>
+    </div>
+</nav>
+<table class="table mt-3 container">
+    <thead>
+        <tr>
+            <th scope="col">Airline Name</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Contact Address</th>
+            <th scope="col">Discount Code</th>
+            <th scope="col">Discount Amount</th>
+            <th scope="col">Logo</th>
+            <th scope ="col">Action</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let airline of airlineDetails">
+           <td>{{airline.airlineName}}</td> 
+           <td>{{airline.contactNumber}}</td> 
+           <td>{{airline.contactAddress}}</td> 
+           <td>{{airline.discountCode}}</td> 
+           <td>{{airline.discountAmount}}</td> 
+           <td>{{airline.logo}}</td> 
+           <td>
+               <button (click)="blockAirline(airline)" class="btn btn-danger">Delete</button>
+           </td> 
+        </tr>
+    </tbody>
 </table>
 
+<!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade bg-transparent" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Airline Details</h5>
+          <button type="button" class="btn-close btn-primary" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-primary">
+            <form [formGroup]="formValue">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label text-white">Airline Name</label>
+                  <input type="text" formControlName="AirlineName" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Contact Number</label>
+                    <input type="tel" formControlName="ContactNumber" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Contact Address</label>
+                    <input type="text" formControlName="ContactAddress" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label text-white">Discount Code</label>
+                  <input type="text" formControlName="DiscountCode" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Discount Amount</label>
+                    <input type="number" step="any" formControlName="DiscountAmount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Logo</label>
+                    <input type="text" formControlName="Logo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" (click)="saveAirline()" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

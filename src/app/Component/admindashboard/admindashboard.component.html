@@ -1,1 +1,17 @@
-<p>admindashboard works!</p>
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h3 class="link-light" >Flight Management</h3>
+        
+        <div class="tab">
+            <a routerLink="/manageairline" routerLinkActive="active"
+            class="tablinks link-light"  style="text-decoration: none;" ><h6>Manage Airlines</h6></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a routerLink="/manageschedule" routerLinkActive="active"
+            class="tablinks link-light"  style="text-decoration: none;" ><h6>Manage Schedules</h6></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        </div>
+        <a routerLink="/adminlogin" style="text-decoration: none;" routerLinkActive="active"
+        class="tablinks link-light" ><h6>
+            Logout&nbsp;<img src="assets/images/shutdown.png" height="25px"  alt="Log out">
+           </h6></a>
+    </div>
+</nav>

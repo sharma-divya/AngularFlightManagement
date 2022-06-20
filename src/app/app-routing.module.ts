@@ -4,6 +4,13 @@ import { AdminloginComponent } from '././Component/adminlogin/adminlogin.compone
 import { RegisterComponent } from '././Component/register/register.component';
 import { LoginComponent } from '././Component/login/login.component';
 import { AdmindashboardComponent } from '././Component/admindashboard/admindashboard.component';
+import { AirlineComponentComponent } from './Component/airline-component/airline-component.component';
+import { ScheduleComponent } from './Component/schedule/schedule.component';
+import { UserdashboardComponent } from './Component/userdashboard/userdashboard.component';
+import { BookinghistoryComponent } from './Component/bookinghistory/bookinghistory.component';
+import { SearchbookingComponent } from './Component/searchbooking/searchbooking.component';
+import { ManagebookingComponent } from './Component/managebooking/managebooking.component';
+import { ViewbookingpnrComponent } from './Component/viewbookingpnr/viewbookingpnr.component';
 const routes: Routes = [
   {
     path:"register" ,
@@ -22,8 +29,28 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:"admindashboard" ,
-    component: AdmindashboardComponent
+    path:"manageairline" ,
+    component: AirlineComponentComponent
+  },
+  {
+    path:"manageschedule" ,
+    component: ScheduleComponent
+  },
+  {
+    path:"bookflight" ,
+    component: SearchbookingComponent
+  },
+  {
+    path:"managebooking" ,
+    component: ManagebookingComponent
+  },
+  {
+    path:"bookings" ,
+    component: BookinghistoryComponent
+  },
+  {
+    path:"viewbookingpnr" ,
+    component: ViewbookingpnrComponent
   }
 ];
 
@@ -32,4 +59,15 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents = [AdminloginComponent , RegisterComponent ,LoginComponent , AdmindashboardComponent]
+export const RoutingComponents = [AdminloginComponent 
+  ,RegisterComponent 
+  ,LoginComponent 
+  ,AdmindashboardComponent
+  ,AirlineComponentComponent
+  ,ScheduleComponent
+  ,UserdashboardComponent
+  ,ManagebookingComponent
+  ,SearchbookingComponent
+  ,BookinghistoryComponent
+  ,ViewbookingpnrComponent
+]

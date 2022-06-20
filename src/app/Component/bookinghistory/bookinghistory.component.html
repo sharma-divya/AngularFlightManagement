@@ -1,0 +1,39 @@
+<app-userdashboard></app-userdashboard>
+
+<nav class="navbar navbar-light bg-light">
+    <form [formGroup]="search" class="container-fluid">
+        <h3 style="color:black">Manage Booking</h3>
+            Email<input type ="text" formControlName="email" class="form-control-lg" placeholder="Enter Email" >
+            
+            <button type="button" (click)="GetBookingEmail()" class="btn btn-primary" >View</button>
+       
+    </form>
+</nav>
+<table class="table mt-3 justify-content-lg-start">
+    <thead>
+        <tr>
+            <th scope="col">Airline</th>
+            <th scope="col">Flight Number</th>
+            <th scope="col">From Place</th>
+            <th scope="col">To Place</th>
+            <th scope="col">Start DateTime</th>
+            <th scope="col">End DateTime</th>
+            <th scope ="col">Scheduled Days</th>
+            <th scope ="col">Action</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of bookDetails">
+            <td>{{booking.airlineName}}</td> 
+            <td>{{booking.flightNo}}</td>          
+            <td>{{booking.placeFrom}}</td> 
+            <td>{{booking.placeTo}}</td> 
+            <td>{{booking.startDateTime}}</td> 
+            <td>{{booking.endDateTime}}</td> 
+            <td>{{booking.scheduleDays}}</td>         
+            <td>
+                <button (click)="Cancel(booking)" class="btn btn-danger" >Cancel</button>
+            </td> 
+         </tr>
+    </tbody>
+</table>

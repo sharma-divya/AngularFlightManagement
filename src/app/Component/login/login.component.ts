@@ -31,12 +31,13 @@ export class LoginComponent implements OnInit {
     console.log('>>>');
     console.log(this.userCredentials.value);
     if(this.userCredentials.invalid){
+      alert('Please enter Username and Password');
       return;
     }
-    this._loginservice.Login(this.userCredentials.value).subscribe((result) =>{
+    this._loginservice.validateUser(this.userCredentials.value).subscribe((result) =>{
       console.log(result);
       if(result.token){
-        this.router.navigate(["admindashboard"]);
+        this.router.navigate(["bookflight"]);
       }
       else{
         alert(result.response);
@@ -44,17 +45,10 @@ export class LoginComponent implements OnInit {
     }),
      (error : any ) =>{
       console.error('>>>>>>>>',error);
-      this.router.navigate(["register"]);
+      this.router.navigate(["bookflight"]);
       
      }
-
-    //  this._loginservice.Login
   }
 
   
-  Login(data:any){
-    this._loginservice.Login(data).subscribe((result)=>{
-      console.warn(result)
-    })
-  }
 }

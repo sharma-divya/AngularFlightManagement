@@ -1,0 +1,35 @@
+<app-userdashboard></app-userdashboard>
+
+<nav class="navbar navbar-light bg-light">
+    <form [formGroup]="search" class="container-fluid">
+        <h3 style="color:black">Check Ticket Details</h3>
+            PNR<input type ="text" formControlName="PNR" class="form-control-lg" placeholder="Enter PNR" >
+            
+            <button type="button" (click)="GetBookingPNR()" class="btn btn-primary" >View</button>
+       
+    </form>
+</nav>
+<table class="table mt-3 justify-content-lg-start">
+    <thead>
+        <tr>
+            <th scope="col">Airline</th>
+            <th scope="col">Flight Number</th>
+            <th scope="col">From Place</th>
+            <th scope="col">To Place</th>
+            <th scope="col">Start DateTime</th>
+            <th scope="col">End DateTime</th>
+            <th scope="col">Email</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of bookDetails">
+            <td>{{booking.airlineName}}</td> 
+            <td>{{booking.flightNo}}</td>          
+            <td>{{booking.placeFrom}}</td> 
+            <td>{{booking.placeTo}}</td> 
+            <td>{{booking.startDateTime}}</td> 
+            <td>{{booking.endDateTime}}</td> 
+            <td>{{booking.email}}</td> 
+        </tr>
+    </tbody>
+</table>

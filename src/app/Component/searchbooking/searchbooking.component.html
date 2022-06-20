@@ -1,0 +1,131 @@
+<app-userdashboard></app-userdashboard>
+
+<nav class="navbar navbar-light bg-light">
+    <form [formGroup]="search" class="container-fluid">
+        <h3 style="color:black">Search Flights</h3>
+             From<input type ="text" formControlName="placefrom" class="form-control-lg" placeholder="Place From" >
+             To<input type ="text" formControlName="placeto" class="form-control-lg" placeholder="Place To" >
+            <button type="button" (click)="SearchSchedule()" class="btn btn-primary" >Search</button>
+       
+    </form>
+</nav>
+<table class="table mt-3 justify-content-lg-start">
+    <thead>
+        <tr>
+            <th scope="col">Airline</th>
+            <th scope="col">Flight Number</th>
+            <th scope="col">From Place</th>
+            <th scope="col">To Place</th>
+            <th scope="col">Start DateTime</th>
+            <th scope="col">End DateTime</th>
+            <th scope="col">Total Cost</th>
+            <th scope="col">No Of Seats</th>
+            <th scope ="col">Meal(V/NV)</th>
+            <th scope ="col">Scheduled Days</th>
+            <th scope ="col">Instrument Used</th>
+            <th scope ="col">Business Seats</th>
+            <th scope ="col">Non-Business Seats</th>
+            <th scope ="col">Action</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let schedule of scheduleDetails">
+            <td>{{schedule.airlineName}}</td> 
+            <td>{{schedule.flightNo}}</td>          
+            <td>{{schedule.placeFrom}}</td> 
+            <td>{{schedule.placeTo}}</td> 
+            <td>{{schedule.startDateTime}}</td> 
+            <td>{{schedule.endDateTime}}</td> 
+            <td>{{schedule.ticketPrice}}</td>
+            <td>{{schedule.rows}}</td>
+            <td>{{schedule.meal}}</td> 
+            <td>{{schedule.scheduleDays}}</td> 
+            <td>{{schedule.instrumentUsed}}</td> 
+            <td>{{schedule.businessClassSeats}}</td> 
+            <td>{{schedule.nonBusinessClassSeats}}</td> 
+            <td>
+                <button (click)="Book(schedule)" class="btn btn-danger" >Book</button>
+            </td> 
+         </tr>
+    </tbody>
+</table>
+<!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Booking Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-primary">
+            <!-- <form >
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label text-white">Flight Number</label>
+                  <input type="text" formControlName="FlightNo" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label text-white">Airline</label>
+                  <select  
+                     name="city" 
+                    class="form-control"
+                   >
+                    <option 
+                      >
+                      
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">From Place</label>
+                    <input type="text" formControlName="PlaceFrom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">To Place</label>
+                    <input type="text" formControlName="PlaceTo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                 <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label text-white">Start DateTime</label>
+                  <input type="datetime-local" formControlName="StartDateTime" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label text-white">End DateTime</label>
+                    <input type="datetime-local" formControlName="EndDateTime" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Ticket Cost</label>
+                    <input type="number" step="any" formControlName="TicketPrice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">No Of Seats</label>
+                    <input type="number" formControlName="Rows" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Meal</label>
+                    <input type="text" formControlName="Meal" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Scheduled Days</label>
+                    <input type="text" formControlName="ScheduleDays" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Instrument Used</label>
+                    <input type="text" formControlName="InstrumentUsed" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Business Seats</label>
+                    <input type="number" formControlName="BusinessClassSeats" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Non-Business Seats</label>
+                    <input type="number" formControlName="NonBusinessClassSeats" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+              </form> -->
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

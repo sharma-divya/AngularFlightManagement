@@ -34,10 +34,10 @@ export class AdminloginComponent implements OnInit {
     if(this.userCredentials.invalid){
       return;
     }
-    this._loginservice.Login(this.userCredentials.value).subscribe((result) =>{
+    this._loginservice.validateUser(this.userCredentials.value).subscribe((result) =>{
       console.log(result);
       if(result.token){
-        this.router.navigate(["admindashboard"]);
+        this.router.navigate(["manageairline"]);
       }
       else{
         alert(result.response);
@@ -53,9 +53,9 @@ export class AdminloginComponent implements OnInit {
   }
 
   
-  Login(data:any){
-    this._loginservice.Login(data).subscribe((result)=>{
-      console.warn(result)
-    })
-  }
+  // Login(data:any){
+  //   this._loginservice.Login(data).subscribe((result)=>{
+  //     console.warn(result)
+  //   })
+  // }
 }
